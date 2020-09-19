@@ -1,4 +1,4 @@
-package com.example.karvytest;
+package com.sonu.karvytest;
 
 import android.content.Context;
 
