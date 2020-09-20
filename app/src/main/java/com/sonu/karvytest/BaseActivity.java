@@ -13,6 +13,10 @@ import com.sonu.karvytest.viewmodel.BaseViewModel;
 
 import butterknife.ButterKnife;
 
+/**
+ * Created by Sonu Sinha on 20/09/2020.
+ */
+
 
 public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatActivity implements LifecycleOwner {
 
@@ -43,13 +47,15 @@ public abstract class BaseActivity<V extends BaseViewModel> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        setView();
         //Initializing the Butter knife library.
         ButterKnife.bind(this);
         //Initializing the ViewModel in the current activity.
         mViewModel = getViewModel();
         setUpUI(savedInstanceState);
     }
+
+    abstract void setView();
 
     @Override
     protected void onStart() {

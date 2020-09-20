@@ -10,15 +10,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Sonu Sinha on 21/09/2020.
+ * Created by Sonu Sinha on 20/09/2020.
  */
 public class ApiService {
 
     private static ApiService instance = null;
     private ServicesAPI servicesAPI = null;
-    private ServicesAPI multiPartServicesAPI = null;
-    private ServicesAPI nodeJsServicesAPI = null;
-
     private ApiService() {
     }
 

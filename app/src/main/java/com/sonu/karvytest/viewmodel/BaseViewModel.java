@@ -15,6 +15,10 @@ import java.lang.ref.WeakReference;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * Created by Sonu Sinha on 20/09/2020.
+ */
+
 public abstract class BaseViewModel<N extends BaseView> extends ViewModel {
 
 

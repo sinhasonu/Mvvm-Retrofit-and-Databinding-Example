@@ -1,7 +1,7 @@
 package com.sonu.karvytest.network;
 
 /**
- * Created by Sonu Sinha on 21/09/2020.
+ * Created by Sonu Sinha on 20/09/2020.
  */
 public interface APIConstants {
 

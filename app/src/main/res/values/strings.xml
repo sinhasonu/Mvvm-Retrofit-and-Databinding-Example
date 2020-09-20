@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KarvyTest</string>
+    <style name="years">Yrs</style>
 </resources>

@@ -1,10 +1,17 @@
 package com.sonu.karvytest;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.databinding.BaseObservable;
+import androidx.databinding.BindingAdapter;
+
 import com.google.gson.annotations.SerializedName;
+import com.sonu.karvytest.utils.CircleImageView;
 
 import java.util.List;
 
-public class EmployeeListModel {
+public class EmployeeListModel extends BaseObservable implements Parcelable {
 
     /**
      * status : success
@@ -15,6 +22,23 @@ public class EmployeeListModel {
     private String status;
     @SerializedName("data")
     private List<DataBean> data;
+
+    protected EmployeeListModel(Parcel in) {
+        status = in.readString();
+        data = in.createTypedArrayList(DataBean.CREATOR);
+    }
+
+    public static final Creator<EmployeeListModel> CREATOR = new Creator<EmployeeListModel>() {
+        @Override
+        public EmployeeListModel createFromParcel(Parcel in) {
+            return new EmployeeListModel(in);
+        }
+
+        @Override
+        public EmployeeListModel[] newArray(int size) {
+            return new EmployeeListModel[size];
+        }
+    };
 
     public String getStatus() {
         return status;
@@ -32,7 +56,18 @@ public class EmployeeListModel {
         this.data = data;
     }
 
-    public static class DataBean {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(status);
+        dest.writeTypedList(data);
+    }
+
+    public static class DataBean extends BaseObservable implements Parcelable {
         /**
          * id : 1
          * employee_name : Tiger Nixon
@@ -51,6 +86,26 @@ public class EmployeeListModel {
         private String employeeAge;
         @SerializedName("profile_image")
         private String profileImage;
+
+        protected DataBean(Parcel in) {
+            id = in.readString();
+            employeeName = in.readString();
+            employeeSalary = in.readString();
+            employeeAge = in.readString();
+            profileImage = in.readString();
+        }
+
+        public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+            @Override
+            public DataBean createFromParcel(Parcel in) {
+                return new DataBean(in);
+            }
+
+            @Override
+            public DataBean[] newArray(int size) {
+                return new DataBean[size];
+            }
+        };
 
         public String getId() {
             return id;
@@ -90,6 +145,20 @@ public class EmployeeListModel {
 
         public void setProfileImage(String profileImage) {
             this.profileImage = profileImage;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(id);
+            dest.writeString(employeeName);
+            dest.writeString(employeeSalary);
+            dest.writeString(employeeAge);
+            dest.writeString(profileImage);
         }
     }
 }
